@@ -36,7 +36,12 @@ display:block;
 }
 
 #detail{
+<<<<<<< HEAD
 	higth:600px;	
+=======
+	higth:600px;
+	
+>>>>>>> branch 'master' of https://github.com/VinhND/DoAnSpringMVC.git
 }
 #mapOff{
 	higth:600px;
