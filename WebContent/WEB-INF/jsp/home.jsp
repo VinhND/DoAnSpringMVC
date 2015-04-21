@@ -56,18 +56,8 @@ display:block;
 	</div>
 	
 	<div id="detail">
-			<div id="mapOff">
-			
-			
-			
-
-  
+			<div id="mapOff">  
 			</div>
-	
-	
-	
-	
-	
 			<div id="mapReal">
 			</div>
 			<div id="graphic">
