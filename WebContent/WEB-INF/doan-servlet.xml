@@ -1,0 +1,85 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd">
+ 
+ <mvc:annotation-driven />
+ <mvc:resources mapping="/resources/**" location="/resources/doantheme/" /> 
+ 
+ 
+<!-- adddddddddddddddddddddddddd -->
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+<!-- adddddddddddddddddddddddddd -->
+
+
+ 
+
+ 
+ 
+<!--  <websocket:message-broker application-destination-prefix="/app">
+    <websocket:stomp-endpoint path="/ws">
+      <websocket:sockjs/>
+    </websocket:stomp-endpoint>
+    <websocket:simple-broker prefix="/topic"/>
+  </websocket:message-broker> -->
+
+ <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+    id="tilesViewResolver">
+    <property name="viewClass"
+        value="org.springframework.web.servlet.view.tiles3.TilesView" />
+</bean>
+<!-- 
+      <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
+        <property name="viewClass">  
+          <value>  
+            org.springframework.web.servlet.view.tiles3.TilesView  
+          </value>  
+        </property>  
+      </bean> 
+     -->  
+
+<bean id="viewResolver"
+	class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<property name="viewClass"
+		value="org.springframework.web.servlet.view.JstlView" />
+	<property name="prefix" value="/WEB-INF/jsp/" />
+	<property name="suffix" value=".jsp" />
+</bean>
+
+<context:component-scan base-package="com.doan.controller" /> 
+ 
+<bean id="tilesConfigurer"
+	class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	<property name="definitions">
+		<list>
+			<value>/WEB-INF/tiles.xml</value>
+		</list>
+	</property>	
+</bean>
+
+
+<websocket:message-broker application-destination-prefix="/app">
+    <websocket:stomp-endpoint path="/ws">
+      <websocket:sockjs/>
+    </websocket:stomp-endpoint>
+    <websocket:simple-broker prefix="/topic"/>
+ </websocket:message-broker>
+
+<!--  <bean 
+	class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+<bean name="/home.html"
+	class="com.doan.controller.HomeController" />  -->
+
+</beans>
