@@ -86,10 +86,13 @@ table tr:nth-child(even) {
 	    console.log("Page load finished");
 	    var a={};
 	 //   alert(a+"0 ");
-	       $.getJSON("http://localhost:8080/DoAnSpringMVC/resources/js/data.json",function(data){
+	       $.getJSON("${pageContext.request.contextPath}/resources/js/data.json",function(data){
 	    	   a=data;
 	    	    $.each(a, function(idx, elem){
-	    	        $('table#tbl TBODY').append('<tr><td>'+elem.username+'</td><td>'+elem.password +'</td><td>'+elem.power +'</td></tr>');
+	    	        $('table#tbl TBODY').append('<tr><td>'
+	    	        		+elem.username+'</td><td>'
+	    	        		+elem.password +'</td><td>'
+	    	        		+elem.power +'</td></tr>');
 	    	        });
 	    	                 
 	    });
