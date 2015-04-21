@@ -44,6 +44,8 @@ table, th , td  {
   border: 2px solid grey;
   border-collapse: black;
   padding: 10px;
+  
+  
 }
 table tr:nth-child(odd)	{
   background-color: #00FF00;
@@ -52,6 +54,8 @@ table tr:nth-child(odd)	{
 table tr:nth-child(even) {
   background-color: #00FF00;
    padding: 100px;
+   
+   
 }
 </style>
 </head>
