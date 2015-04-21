@@ -37,6 +37,8 @@ display:block;
 
 #detail{
 	higth:600px;
+	
+	
 }
 #mapOff{
 	higth:600px;
