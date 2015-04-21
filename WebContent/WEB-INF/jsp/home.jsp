@@ -40,7 +40,6 @@ display:block;
 }
 #mapOff{
 	higth:600px;
-	
 }
 
 </style>
