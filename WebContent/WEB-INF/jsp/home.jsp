@@ -54,7 +54,7 @@ display:block;
 
 </style>
 </head>
-<body onLoad="buildHtmlTable()">
+<body>
 	<div id="mainh">
 	<div id="tab">
 	<img alt="" id="gb" src="${pageContext.request.contextPath}/resources/image/traffic3.png">

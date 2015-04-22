@@ -4,8 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,23 +21,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.doan.entities.Account;
 
 @Controller
 @RequestMapping(value="/taikhoan")
 public class SignupController {
-//	public ArrayList<Account> accs = new ArrayList<Account>();
-//	private Account acc=new Account(null,null,2);
-//	private Account acc2=new Account(null,null,2);
-
-//		@RequestMapping("/api")
-//		public ModelAndView Signup( @RequestParam(value="name") String name){
-//			return new ModelAndView("welcome","message","{'name:':'vinh'}");
-//}
-	
 	@RequestMapping(value ="/signup",method= RequestMethod.GET)
 	public String signup(ModelMap mm){
 		mm.put("tk",new  Account());
@@ -45,6 +37,7 @@ public class SignupController {
 		JSONObject objToWrite = new JSONObject();
 		JSONParser parser = new JSONParser();
 		JSONArray list = new JSONArray();
+		
 		try {
 			 
 			Object obj = parser.parse(new FileReader("/home/hduser/Desktop/modified/DoAnSpringMVC/WebContent/resources/doantheme/js/data.json"));
@@ -54,7 +47,6 @@ public class SignupController {
 	
 			
 			for (int i=0; i<arr.size();i++){
-//			JSONObject detail = (JSONObject) arr.get(i);
 			list.add(arr.get(i));		
 			}
 				
@@ -73,11 +65,12 @@ public class SignupController {
 			if (checkExist==0){
 				JSONObject newObj= new JSONObject();
 				newObj.put("username",tk.getUsername());
-				newObj.put("password", tk.getPassword());
-				newObj.put("power","1");
+				String passMD5=getMD5(tk.getPassword());
+				newObj.put("password", passMD5);
+				newObj.put("power","2");
 				list.add(newObj);
 				session.setAttribute("username", tk.getUsername());
-				mm.put("message", "Successfull "+objToWrite.toJSONString());
+				mm.put("message", "Successfull ");
 			}
 			
 
@@ -106,7 +99,18 @@ public class SignupController {
 		 
 		return "signup";
 	}
-	
+	public String getMD5(String data) {
+        String result = null;
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+            md.update(data.getBytes(Charset.forName("UTF-8")));
+            result = String.format(Locale.ROOT, "%032x", new BigInteger(1, md.digest()));
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException(e);
+        }
+        return result;
+}
 //	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 //	public String createNew(HttpSession session) {
 //		session.removeAttribute("username");

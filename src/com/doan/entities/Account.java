@@ -3,7 +3,7 @@ package com.doan.entities;
 public class Account {
 	private String username;
 	private String password;
-	private int power;
+	private String power;
 	
 	public String getUsername() {
 		return username;
@@ -17,13 +17,13 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getPower(){
+	public String getPower(){
 		return power;
 	}
-	public void setPower(int power){
+	public void setPower(String power){
 		this.power=power;
 	}
-	public Account(String username, String password,int power) {
+	public Account(String username, String password,String power) {
 		super();
 		this.username = username;
 		this.password = password;

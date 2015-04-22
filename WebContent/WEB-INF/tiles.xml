@@ -27,5 +27,8 @@
 <definition name="quanly" template="/WEB-INF/jsp/templates/mytemplate.jsp">
 	<put-attribute name="content" value="/WEB-INF/jsp/quanly.jsp"/>
 </definition>
+<definition name="permission" template="/WEB-INF/jsp/templates/mytemplate.jsp">
+	<put-attribute name="content" value="/WEB-INF/jsp/permission.jsp"/>
+</definition>
 </tiles-definitions>
  

@@ -196,7 +196,7 @@ function distance(lat1, lat2, lon1, lon2) {
 }
 
 function init() {
-	var mapMinZoom = 8;
+	var mapMinZoom = 16;
 	var mapMaxZoom = 18;
 	map = L.map('map', {
 		maxZoom: mapMaxZoom,
