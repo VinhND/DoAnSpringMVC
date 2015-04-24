@@ -78,7 +78,6 @@ float:right;
     height: 540px;
     padding: 20px;
     float:right;
- 
     -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.1);
     -moz-box-shadow: 0px 1px 2px rgba(0,0,0,.1);
     box-shadow: 0px 1px 2px rgba(0,0,0,.1);
@@ -216,34 +215,7 @@ function init() {
 			[10.76496, 106.68175],
 			[10.7645, 106.6813],
 			[10.765, 106.682]
-		];
-/*
-	var osmdata= JSON.parse(paths);
-	var obj=[];
-	var numPaths=osmdata.length;
-	var numSegments=0;
-	var numLL=0;
-	for (var i=0 ; i<numPaths;i++){
-	
-		numSegments=osmdata[i].segments.length;
-		for (var j=0;j<numSegments;j++){
-			obj=[];
-			numLL=osmdata[i].segments[j].length;
-			for (var k=0;k<numLL;k++){
-				obj.push(osmdata[i].segments[j][k]);			
-			}
-			var u = Math.floor(Math.random() * 4)+1;
-			var v= Math.floor(Math.random() * 4)+1;
-			if (u==1) L.polyline(obj,{color: 'red',weight:8}).addTo(map).bindPopup( "<b>ID duong :</b>"+osmdata[i].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
-			if (u==2) L.polyline(obj,{color: 'green',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[i].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
-			if (u==3) L.polyline(obj,{color: 'yellow',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[i].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
-			if (u==4) L.polyline(obj,{color: 'blue',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[i].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
-		}
-		
-	}
-	*/
-	
-	
+		];	
 	var bounds = map.getBounds();
     console.log(bounds._northEast);
     var center = map.getCenter();
@@ -253,50 +225,52 @@ function init() {
 	var obj=[];
 	var arrR=[];
 	var arrS=[];
+	var tt=[];
 	var numPaths=osmdata.length;
 	//var numPaths=500;
 	var numSegments=0;
 	var numLL=0;
+	var idtt=0;
 	for (var i=0 ; i<numPaths;i++){	    	
 		numSegments=osmdata[i].segments.length;
-		for (var j=0;j<numSegments;j++){
+		for (var j=0;j<numSegments;j++){			
 			obj=[];
 			numLL=osmdata[i].segments[j].length;
 			for (var k=0;k<numLL;k++){
 				center = map.getCenter();
-				console.log("cen="+center);
+			//	console.log("cen="+center);
 			//	console.log("lat="+osmdata[i].segments[j][k][0]);
 				//obj.push(osmdata[i].segments[j][k]);
 				var d= distance(center.lat,osmdata[i].segments[j][k][0],center.lng,osmdata[i].segments[j][k][1]);
-				console.log("d="+d);
+		//		console.log("d="+d);
 				if ( d> radius+100) {							
 					break;
 				}
 				arrR.push(i);
 				arrS.push(j);	
+				tt.push(idtt);				
+//				console.log("id thu tu segment: "+idtt+" i="+" j="+j);
 			}
-			
+			idtt++;
 		}
-	}	
-		
+	}			
 	for (var index=0;index<arrR.length;index++){
 		obj=[];
+	//	console.log("segment:"+tt[index]);
 		for (var k=0; k<osmdata[arrR[index]].segments[arrS[index]].length;k++ ){
 			obj.push(osmdata[arrR[index]].segments[arrS[index]][k]);
-			}
-			
+			}			
 	var u = Math.floor(Math.random() * 4)+1;
 	var v= Math.floor(Math.random() * 4)+1;
 
 	if (u==1) 
-		L.polyline(obj,{color: 'red',weight:8}).addTo(map).bindPopup( "<b>ID đường :</b>"+osmdata[arrR[index]].id+"<br><b>Tên đường :</b>"+osmdata[arrR[index]].name+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+		L.polyline(obj,{color: '#f3c',weight:8}).addTo(map).bindPopup( "<b>ID đường :</b>"+osmdata[arrR[index]].id+"<br><b>Tên đường :</b>"+osmdata[arrR[index]].name+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 	if (u==2) 
-		L.polyline(obj,{color: 'green',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+		L.polyline(obj,{color: '#c30',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 	if (u==3) 
-		L.polyline(obj,{color: 'yellow',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+		L.polyline(obj,{color: '#930',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 	if (u==4) 
-		L.polyline(obj,{color: 'blue',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
-	
+		L.polyline(obj,{color: '#red',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);	
 	}
 	
 	var popup = L.popup();	
@@ -329,6 +303,8 @@ function init() {
 	    	var obj=[];
 	    	var arrR=[];
 	    	var arrS=[];
+	    	var tt=[];
+	    	var idtt=0;
 	    	var numPaths=osmdata.length;
 	    	//var numPaths=500;
 	    	var numSegments=0;
@@ -340,18 +316,21 @@ function init() {
 	    			numLL=osmdata[i].segments[j].length;
 	    			for (var k=0;k<numLL;k++){
 	    				center = map.getCenter();
-	    				console.log("cen="+center);
+	    			//	console.log("cen="+center);
 	    			//	console.log("lat="+osmdata[i].segments[j][k][0]);
 	    				//obj.push(osmdata[i].segments[j][k]);
 	    				var d= distance(center.lat,osmdata[i].segments[j][k][0],center.lng,osmdata[i].segments[j][k][1]);
-	    				console.log("d="+d);
+	    			//	console.log("d="+d);
 						if ( d> radius+100) {							
 							break;
 						}
 						arrR.push(i);
-						arrS.push(j);	
+						arrS.push(j);
+						tt.push(idtt);
+						
+						console.log("id thu tu segment: "+idtt+" i="+i+" j="+j);
 	    			}
-	    			
+	    			idtt++;
 	    		}
 	    	}	
 	    		
@@ -365,14 +344,14 @@ function init() {
 			var v= Math.floor(Math.random() * 4)+1;
 		
 			if (u==1) 
-				L.polyline(obj,{color: 'red',weight:8}).addTo(map).bindPopup( "<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+				L.polyline(obj,{color: '#f3c',weight:8}).addTo(map).bindPopup( "<b>ID đường :</b>"+osmdata[arrR[index]].id+"<br><b>Tên đường :</b>"+osmdata[arrR[index]].name+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 			if (u==2) 
-				L.polyline(obj,{color: 'green',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+				L.polyline(obj,{color: '#c30',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 			if (u==3) 
-				L.polyline(obj,{color: 'yellow',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+				L.polyline(obj,{color: '#930',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 			if (u==4) 
-				L.polyline(obj,{color: 'blue',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
-	  	
+				L.polyline(obj,{color: '#red',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+			
 	    	}
 	    	
 	    	
