@@ -34,7 +34,7 @@
 }
 #out{
 higth :10px;
-background-color: SaddleBrown;
+background-color:111111;
 float:right;
 }
 #map{
@@ -289,7 +289,7 @@ function init() {
 	var v= Math.floor(Math.random() * 4)+1;
 
 	if (u==1) 
-		L.polyline(obj,{color: 'red',weight:8}).addTo(map).bindPopup( "<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
+		L.polyline(obj,{color: 'red',weight:8}).addTo(map).bindPopup( "<b>ID đường :</b>"+osmdata[arrR[index]].id+"<br><b>Tên đường :</b>"+osmdata[arrR[index]].name+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 	if (u==2) 
 		L.polyline(obj,{color: 'green',weight:8}).addTo(map).bindPopup("<b>ID duong :</b>"+osmdata[arrR[index]].id+"<br>Van toc Trung binh: "+u*0.24+v+ "<br>So xe la : "+v*16);
 	if (u==3) 

@@ -21,28 +21,69 @@
         margin: 0;
         padding: 0;
 	}
+* {
+  margin: 0;
+  padding: 0;
+}
 		#main{
     width: 1200px;
     padding: 0;
     margin-left: auto;
     margin-right: auto;
 }
+
 #head{
-    height: 90px;
-     background-color: 333333;
+    height: 100px;
+    background-color: F5F5F5;
     border: 1px solid #CDCDCD;
     margin-bottom:5px;
 }
+
+#head-link{
+     height: 30px;
+     width:100px
+     line-height: 30px;
+     padding-left: 10px;
+     padding-right: 10px;
+     border: 1px solid #CDCDCD;
+     background-color: #00AA00;
+     margin-bottom:5px;
+     clear: both;
+}
+/*
 #temp{
 higth :10px;
 background-color: 111111;
-float:right;
-}
+float:float;
+}*/
 #cont{
-    height: 700px;
-     background-color: 111111;
+    height: 1700px;
     border: 1px solid #CDCDCD;
   }
+}
+
+#head-link ul {
+  background: #1F568B;
+  list-style-type: none;
+	
+}
+#head-link li {
+  color: #f1f1f1;
+  float: left;
+  width: 100px;
+  height:30px;
+  line-height:30px;
+}
+#head-link a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+#head-link a:hover {
+  background: #33FF33;
+  color: #333;
+  float:left;
+  width:80%
 }
 </style>
 </head>
@@ -51,17 +92,18 @@ float:right;
 <div id="main">
 	<div id="head">
   	<h1 style="text-align: center;margin-bottom: 8px;color: #339900">SYSTEM TRAFFIC </h1>
-  	
-  	<div id="temp">
-	<a href="${pageContext.request.contextPath }/mytemplate.html">Home |</a>	 
-	<a href="${pageContext.request.contextPath }/mytemplate/aboutus.html">Aboutus |</a>
-	<a href="${pageContext.request.contextPath }/taikhoan/login.html">Signin |</a>
-	<a href="${pageContext.request.contextPath }/taikhoan/signup.html">SignUp</a>
-
-
-	</div>
 	</div>
 
+	<div id=head-link>
+	 <ul>
+
+	 <li><a href="${pageContext.request.contextPath }/mytemplate.html">Home </a></li> 
+	<li><a href="${pageContext.request.contextPath }/mytemplate/aboutus.html">Aboutus </a></li> 
+	<li><a href="${pageContext.request.contextPath }/taikhoan/login.html">Signin </a></li> 
+	<li><a href="${pageContext.request.contextPath }/taikhoan/signup.html">SignUp</a></li> 
+	</ul>
+	 
+	</div>
 	<div id="cont">
 	<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
